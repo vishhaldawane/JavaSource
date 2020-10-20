@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Registration process</title>
+</head>
+<body>
+	<h2> New User Registration </h2>
+	
+	<table border=1 cellpadding=10 cellspacing=10>
+		<tr> 
+			<td> Enter Name </td>
+			<td> <input type=text name=fname> </td>
+		</tr>
+		
+		<tr> 
+			<td> Enter Email </td>
+			<td> <input type=email name=fname> </td>
+		</tr>
+		
+		<tr> 
+			<td> Enter Password </td>
+			<td> <input type=password name=pass> </td>
+		</tr>
+		
+		<tr> 
+			<td> Confirm Password </td>
+			<td> <input type=password name=cpass> </td>
+		</tr>
+		
+		<tr> 
+			<td> Select Gender </td>
+				<td> 
+						Male <input type=radio name=gender /> 
+						Female <input type=radio name=gender />		
+				</td>
+		</tr>
+		
+		<tr>
+		<td> Education </td>
+				<td> 
+					<select name="edu">
+						<option>...</option>
+						<option selected>BE</option>
+						<option>BSC</option>
+						<option>BSCIT</option>
+						<option>BTECH</option>
+						<option>MCA</option>
+						<option>MTECH</option>
+					</select> 
+				</td>
+		</tr>
+		
+		<tr>
+		<td> Select Status </td>
+				<td> 
+						Java Certified <input type=checkbox name=certified />
+						LTI Salaried <input type=checkbox name=salaried />
+						Married  <input type=checkbox name=maritalStatus /> 
+				</td>
+		</tr>
+
+		<tr> 
+			<td> Enter Zip</td>
+			<td> <input type=text name=zip> </td>
+		</tr>
+		
+		<tr>
+		<td> Country </td>
+				<td> 
+					<select name="country">
+						<option value="-1">...</option>
+						<option value="1"selected>INDIA</option>
+						<option value="2">USA</option>
+						<option value="3">UK</option>
+						
+					</select> 
+				</td>
+		</tr>
+		
+		<tr>
+			<td> Comments </td>
+			<td> 
+				<textarea name="mycomments" rows="5" cols="20">
+						Enter your comments
+				</textarea>
+			</td>
+		</tr>
+		
+		<tr>
+			<td> <input type=submit value="Register"> </td>
+			<td> <input type=reset value="Cancel"> </td>
+		</tr>
+		
+	</table>
+	
+</body>
+</html>
