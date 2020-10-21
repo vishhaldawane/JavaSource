@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	<script type="text/javascript">
+		function calc()
+		{
+			var num1, num2, res, op;
+			num1 = document.getElementById("n1").value;
+			num2 = document.getElementById("n2").value;
+			op = document.getElementById("opr").value;
+			if(op=="+")	{
+				document.getElementById("res").value=parseInt(num1)+parseInt(num2);	
+			}else if(op=="-"){
+				document.getElementById("res").value=num1-num2;	
+			}else if(op=="*"){		
+				document.getElementById("res").value=num1*num2;	
+			}else if(op=="/"){
+				document.getElementById("res").value=num1/num2;	
+			}
+		}
+	</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td> Enter number1 </td>
+			<td> <input type=text id=n1> </td>
+		</tr>
+		
+		<tr>
+			<td> Enter number2 </td>
+			<td> <input type=text id=n2> </td>
+		</tr>
+		
+		<tr>
+			<td>
+				<select id="opr">
+					<option value="+">+</option>
+					<option value="-">-</option>
+					<option value="*">*</option>
+					<option value="/">/</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td> <input type=button name=Calculate value="Calculate" onclick="calc()"> </td>
+		</tr>
+		
+		<tr>
+			<td> <input type=text id="res"> </td>
+		</tr>
+	</table>
+</body>
+</html>
