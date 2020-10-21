@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>User Registration process</title>
+	<meta charset="ISO-8859-1">
+	<title>User Registration process</title>
+	<link rel="stylesheet" href="mycss/registration1.css" type="text/css"/>
+	
+	<script type="text/javascript">
+	
+		function validateForm()
+		{
+			var x = document.forms["myForm"]["fname"].value;
+			if(x==null || x=="") {
+				alert("First Name Cannot be blank");
+				return false;
+			}
+
+			var y = document.forms["myForm"]["emailAddress"].value;
+			if(y==null || y=="") {
+				alert("Email Cannot be blank");
+				return false;
+			}
+			
+			var p = document.forms["myForm"]["pass"].value;
+			if(p==null || p=="") {
+				alert("Password cannot be blank");
+				return false;
+			}
+			
+			var cp = document.forms["myForm"]["cpass"].value;
+			if(cp==null || cp=="") {
+				alert("Confirmed Password cannot be blank");
+				return false;
+			}
+			
+			if( p != cp) {
+				alert("Confirmed Password does NOT match with password entered");
+				return false;
+			}
+			
+			var allElements = document.getElementsByName("gender");
+			
+			var isChecked = false;
+			for(var i=0; i< allElements.length;i++) {
+				if(allElements[i].checked)
+				{
+					isChecked=true;
+					break;
+				}
+			}
+
+			if(document.myForm.edu.value == "-1") {
+				alert("Please select the education");
+				return false;
+			}
+				
+			if(document.myForm.zip.value=="" ||
+				isNaN( document.myForm.zip.value) || 
+				document.myForm.zip.value.length !=5 )
+			{
+				alert('Please provide the zip in #####');
+				document.myForm.zip.focus();
+				return false;
+			}
+
+				
+			
+			return true;
+		}
+	</script> 
 </head>
+
 <body>
 	<h2> New User Registration </h2>
 	
+	<form name="myForm" action="index.html" onsubmit="return validateForm()">
 	<table border=1 cellpadding=10 cellspacing=10>
 		<tr> 
 			<td> Enter Name </td>
@@ -15,7 +83,7 @@
 		
 		<tr> 
 			<td> Enter Email </td>
-			<td> <input type=email name=fname> </td>
+			<td> <input type=email name=emailAddress> </td>
 		</tr>
 		
 		<tr> 
@@ -31,8 +99,8 @@
 		<tr> 
 			<td> Select Gender </td>
 				<td> 
-						Male <input type=radio name=gender /> 
-						Female <input type=radio name=gender />		
+						Male <input type=radio value="male" name="gender" /> 
+						Female <input type=radio value="female" name="gender" />		
 				</td>
 		</tr>
 		
@@ -40,13 +108,13 @@
 		<td> Education </td>
 				<td> 
 					<select name="edu">
-						<option>...</option>
-						<option selected>BE</option>
-						<option>BSC</option>
-						<option>BSCIT</option>
-						<option>BTECH</option>
-						<option>MCA</option>
-						<option>MTECH</option>
+						<option value="-1">[Choose Your Edu]</option>
+						<option value="BE" selected>BE</option>
+						<option value="BSC" >BSC</option>
+						<option value="BSCIT" >BSCIT</option>
+						<option value="BTECH" >BTECH</option>
+						<option value="MCA" >MCA</option>
+						<option value="BE PC" >BE Petro</option>
 					</select> 
 				</td>
 		</tr>
@@ -93,6 +161,17 @@
 		</tr>
 		
 	</table>
+	
+	</form>
+	
+	<form>
+	
+	</form>
+	
+	<form>
+	
+	</form>
+	
 	
 </body>
 </html>
