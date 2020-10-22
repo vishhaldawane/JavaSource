@@ -37,7 +37,7 @@ body {
 }
 
 .main {
-	width: 80%
+	width: 80%;
 	margin: auto;
 }
 
@@ -46,6 +46,52 @@ body {
 	padding: 20px;
 	margin-top: 20px;
 }
+
+.row:after {
+	content:"";
+	display: table;
+	clear: both;
+}
+
+.cc {
+	float:left;
+	padding:5px;
+}
+.container {
+	padding: 16px;
+	width: 350px;
+	margin: auto;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=tel] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0; 
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+span.psw {
+	float: right;
+	padding-top: 16px;
+}
+.cancelbtn {
+	width: auto;
+	padding: 10px 18px;
+	background-color: #f44336;
+}
+
+img {
+	width:auto;
+	max-width: 185px;
+	height: auto;
+}
+button:hover {
+	opacity: 0.8;
+}
+
+
 
 .footer {
 	padding: 20px;
