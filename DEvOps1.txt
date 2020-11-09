@@ -1,0 +1,246 @@
+
+
+
+	
+
+	Developers	and	Operations
+	|			|
+	Atm Machine		Atm Machine
+	|
+	ATM Engineers
+	|
+	construct the
+	parts/units and
+	integration
+	of these parts
+	to make a
+	functional
+	machine for
+	the end user
+	|
+	[Dev]elopers			Operations
+	|				| Mythili
+	A Flight- Mit			[Deploy]
+	|				|
+	|				-Deploye the flight 
+	|				in the airlines
+	Flight Engineers		-signal processing
+	-construct the 			-runway maintenance
+	engine, -wings, 			-fly by wire program
+	-cockpit, -blackbox		-airport management
+	-seats, infact			-flight maintenance
+	entire flight			-flight navigation
+	|				-fuel management	
+	[Test]ing of flight		-traffic control
+	|	Ashok			-velocity management
+	test of the engine		-altitude, latitude
+	test of the wings		[attitude of the pilot]
+	with engine, without		-safety management
+	engine, tyres,propellers
+	
+	[ECLIPSE] - add this to the classpath ojdbc6_g.jar
+	| MyAirlineProject
+Flights Dev
+	|   |  |   |
+	f1 f2  f3  f4  
+		|   |
+		Testers
+	 problem| [JUNIT]
+	<------ YES NO --> Deployment
+				| [APACHE + TOMCAT]
+				deployers
+				|ojdbc6_g.jar copy in lib
+				f1 f2 f3 being used
+				|  [BROWSER]
+				End Users
+
+	MyAirlineProject
+	|
+	WEB-CONTENT
+	|
+--------------------
+|		|
+-----------
+|	|
+WEB-INF META-INF
+|
+---------------
+|	   |
+classes	web.xml
+|
+---------------
+|
+YourServlet
+
+------------------
+after deployement
+------------------
+MyAirlineProject
+	|
+-----------
+|	|
+WEB-INF META-INF
+|
+---------------
+|	   |
+classes	web.xml
+|
+---------------
+|
+YourServlet
+
+
+
+	when u right click on the webproject
+	and says run on server
+	at that time 
+
+	it creates a war file
+
+	WAR - web "archieve"
+			|
+			collection of so many files
+			bundled together in a single file
+			
+	that is done by apache tomcat
+
+
+
+
+
+	jar - is the java utility
+
+		to make java archieve
+
+	
+
+	javac - compiler
+	java - interpreter
+	javap - disassembler
+	jar -   java "archieve"
+			 |
+			bundle of multiple files
+			
+winrar/jar - bundling multiple files into a single unit
+zip - to compress
+	
+
+
+	why jar ???? - to transport files
+			from one location to
+			the other
+			
+			- maintain a single timestamp
+			of a single file for version control
+			for the source code management
+
+	jar -cvf   jarfilename   source
+
+
+	jar -tvf jarfilename
+
+		-t - table of contents
+
+		-c create
+
+		-v verbose 
+
+		-f fileToBeCreated
+
+	jar -tvf bank.jar <-- see the content of jar
+	jar -tvf flight.jar <-- see the content of jar
+	jar -tvf circus.jar <-- see the content of jar
+
+	UPDATE THE JAR
+	-----------------	
+	jar -uvf circus.jar CircusLion.class
+	jar -uvf bank.jar RecurringAccount.class
+	jar -uvf flight.jar Rafel.class
+
+
+	jar -tvf bank.jar <-- see the content of jar
+	jar -tvf flight.jar <-- see the content of jar
+	jar -tvf circus.jar <-- see the content of jar
+
+	
+
+
+
+
+
+		-c create
+		-v verbose
+		-f fileToCreate
+
+
+
+
+Dev	CommercialFlight.java <-- developed
+	|
+	CommercialFlight.class <-- output file
+	|
+Test	Tester is going to test the functions of it
+	|
+	if all test cases are OK
+	|
+	then its a qualified file for .jar utility
+	|
+Jar	jar flight.jar  CommercialFlight.class .. .. .. .. ..
+	|
+	now this .jar file is ready for deployment
+	|
+Deploy	deploy it on the server 
+	|
+Used	Client is ready to use it 
+
+
+
+
+
+	jar -xvf bank.jar <-- will extract everything
+
+	jar -xvf bank.jar Fixed.class <-- extract only
+				Fixed.class file
+	
+
+jar -cvf project.jar *.class *.txt *.jpeg *.gif a.jpeg b.txt c.gif
+
+sample> notepad Demo.java -> created 4 programs, Demo,A,  B,  C
+sample> javac Demo.java				  |   |   |   |
+sample> A.class B.class C.class Demo.class    main() foo far fun
+sample> jar -cvf myproject.jar *.class
+sample> del *.class
+sample> jar -xvf myproject.jar META-INF/MANIFEST.MF
+sample> cd META-INF
+sample> notepad MANIFEST.MF
+		|
+		Main-Class: Demo <--append this line/save it
+sample> cd .. <- exit from META-INF folder
+sample> jar -uvfm myproject.jar META-INF/MANIFEST.MF
+
+sample> jar -tvf myproject.jar <-- look at the jar now
+				  with updated size 
+sample> java -jar myproject.jar <-- this jar is
+				executable jar, since it
+				is aware of the Main-Class:Demo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
