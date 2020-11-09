@@ -1,0 +1,37 @@
+
+
+			will hold Collection <-- object/NOT DB
+	ApacheTomcat			|
+class Contact
+{
+	String contactNumber;
+	String contactName;
+	set/get
+}
+Collection<Contact> contactList = new ArrayList<Contact>();
+
+	|GET     ContactRestProject/ContactService/rest/contacts
+	|GET     ContactRestProject/ContactService/rest/contact/number
+	|POST    ContactRestProject/ContactService/rest/addContact
+	|PUT     ContactRestProject/ContactService/rest/modifyContact
+	|DELETE  ContactRestProject/ContactService/rest/deleteContact
+------------------------
+|
+Browser
+|
+ContactProject
+	|
+--------------------------------------
+	|		|	|
+Components		Service
+|			    |
+ViewContactComponent	ContactService
+ViewAllContactsComponent	 |
+AddContactComponent --------> addContact();
+ html / css / ts 
+ |
+ number
+ name
+ModifyContactComponent		5 functions here to hit 5 REST services
+DeleteContactComponent		and these 5 functions are
+				utilized by the 5 components
