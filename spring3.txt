@@ -1,0 +1,123 @@
+
+	Dept <-table
+	|
+	Database
+	|
+	Hibernate <-- ORM
+	|
+-----------------------------------------------------
+|1			|2			|3
+TransactionManager	TransactionManager	|
+SessionFactory		EntityManagerFactory	DataSource <= "ds"
+Session			EntityManager		DriverManagerDataSource
+Transaction		EntityTransaction	driverClassName
+hibernate.cfg.xml	META-INF/perstence.xml	url
+hibernate.properties	hibernate.properties	username,password
+|			|			|
+xml			jpa			pure jdbc code
+|			|			|
+Dept/Product		Dept			Dept
+|			|			|
+Dept.hbm.xml		@Entity,@Id		no pk/fk mgmnt
+Product.hbm.xml
+<class><id>		@GeneratedValue		|
+|			|			|
+Spring						DeptImpl/EmpImpl
+						/CustomerImpl/
+						OrdImpl/ItemImpl
+						ProductImpl/
+						PriceImpl
+
+
+
+placeOrder() {
+	begin transaction
+	 processOrder(Order ord); //insert
+	end transaction
+
+	begin transaction
+	 store(Payment payDetails); //insert
+	end transaction
+
+	begin transaction
+	 reduceStock(productId,quantity)//update
+	end transaction
+}
+
+
+placeOrder() {
+	begin transaction
+	   processOrder(Order ord); //insert
+	   store(Payment payDetails); //insert
+	   reduceStock(productId,quantity)//update
+	end transaction
+}
+
+ interface		interface		interface
+OrderRepository	     PaymentRepository	ProductRepository
+  |processOrd(Ord);  store(Payment) |	    |reduceStock(pid,
+  |implements		implements  |       |qty)
+  |                                 |	    |
+  |	AbstractJpaRepository       |	    | JdbcTemplate
+  |		| entityManager;    |	    | 
+  |		|                   |	    |
+-[|]-------------------------------[|]	    |
+  |    extends              extends |	    |implements
+OrderRepositoryImpl    PaymentRepository  ProductRepositoryImpl
+getEntityManager()	getEntityManager()
+processOrd()		store()		   reduceStock()
+  insert query		  insert query	    update query
+
+
+OrderRepositoryImpl1
+OrderRepositoryImpl2
+OrderRepositoryImpl3
+
+
+	OnlineShoppingService
+		| public void placeOrder(Order ord);
+		|
+	OnlineShoppingServiceImpl
+		placeOrder(Order ord)
+		{
+		
+		}
+
+1	MusicalInstrument mi = new Flute();
+ vs	
+2	Guitar g = new Guitar();
+
+	mi.play();
+
+	g.play(); //inherited function from MI
+	g.pluck(); //exclusive function of Guitar
+
+
+
+	@Component <-- you declare this as a bean
+	|
+----------------------
+|		|
+@Repository	@Service
+|		    |   
+persistence layer  service layer
+
+
+
+		DB
+		|
+		Hibernate
+		|
+		some repos <-- persistence layer <-- kitchen 
+		|
+		some services <- service layer - dining table
+		|
+		rest API 
+		|
+		Angular <-- menu
+
+
+
+
+
+	
