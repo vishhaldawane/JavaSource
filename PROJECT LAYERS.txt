@@ -1,0 +1,220 @@
+	
+DEPT <---> Department
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+    =>  10 ACCOUNTING     NEW YORK
+
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+EMP <--> Employee
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+
+
+@Entity
+@Table(name="dept")
+class Department
+{
+   @Id
+   int deptno;
+   String dname;
+   String location;
+   
+   @OneToMany
+   Set<Employee> employees;
+
+   void setEmpno(int d) { deptno = d; } 
+   int getDeptno() { return deptno; }
+
+   void setEmployees(Set<Employee> emps) {
+	employees = emps;
+   }
+   Set<Employee> getEmployees() { //select * from emp where deptno=?
+	return employees ;
+   }
+}
+
+
+TEST CASE <--> fetch salary of employees of a given deptno=10
+
+Department dept = null;
+dept = session.get(Department.class,10); //select * from dept where deptno=10;
+you got this data inside dept -> ( 10 ACCOUNTING     NEW YORK )
+
+Set<Employee> empsOfThatDept = dept.getEmployees();
+
+Employee<Iterator> iter = empsOfThatDept.iterator();
+while(iter.hasNext())
+{
+	Employee currEmp = iter.next();
+	sysout(currEmp.getSal());
+}
+
+---------------------------------------
+
+TEST CASE <--> fetch salary of an employees of a given empno=7900
+
+Employee emp = null;
+emp = session.get(Employee.class, 7900);
+sysout(emp.getSal());
+
+---------------------------------------
+
+TEST CASE <--> fetch salary of all the employees
+
+
+List<Employee> allEmpsList = null;
+Quesry myQuery = session.createQuery("from Employee");
+allEmps        = myQuery.getResultList();	
+Set<Employee> allEmpsSet = new HashSet<Employee>(allEmpsList);
+for(Employee ex : allEmpsSet ) 
+{
+   sysout(ex.getSal());
+}
+
+---------------------------------------
+
+What mohan should do here as a team leader
+or with other team members he can discuss and 
+surface definite interfaces <-- which depicts the
+flow of the project
+eg.
+
+[1]==========================DATA BASE LAYER====================
+
+	dept,  emp,  customer, ord, item, product, price
+
+[2]=============================POJO LAYER =====================
+
+class Department {  } class Employee { } class Customer { }
+class Order { } class Item  { } class Product
+class Address { } and other classes if required
+
+[3]================================DAO LAYER=============================
+
+interface DepartmentDAO //all crud required
+{
+	Department getDept(int dno);
+}
+class DepartmentDAOImpl implements DepartmentDAO
+{
+	Department getDept(int dno);
+	{ //assuming sf,session,transaction is created
+		return session.get(Department.class,dno); 	
+	}
+}
+
+interface EmployeeDAO
+{
+	Set<Employee> getEmps();
+	Set<Employee> getEmpsByDeptno(int dno);
+}
+class EmployeeDAOImpl implements EmployeeDAO
+{
+	Set<Employee> getEmps()
+	{
+		List<Employee> allEmpsList = null;
+		Quesry myQuery = session.createQuery("from Employee");
+		allEmps        = myQuery.getResultList();
+		return allEmps;
+	}
+	Set<Employee> getEmpsByDeptno(int dno)
+	{
+		List<Employee> allEmpsList = null;
+		Quesry myQuery = session.createQuery("from Employee e where e.deptno="+dno);
+		allEmps        = myQuery.getResultList();
+		return allEmps;
+	}
+	Set<Employee> getEmpsByJob(String job)
+	{
+		List<Employee> allEmpsList = null;
+		Quesry myQuery = session.createQuery("from Employee e where e.job="+job);
+		allEmps        = myQuery.getResultList();
+		return allEmps;
+	}
+}
+[4]=========================== Service Layer ==================================
+
+interface DepartmentService
+{
+	Department fetchDepartmentByDepto(int dno);
+}
+class DepartmentServiceImpl implements DepartmentService
+{
+	@Autowired
+	DepartmentDAOImpl deptDaoImpl;
+
+	Department fetchDepartmentByDepto(int dno)
+	{
+		return deptDaoImpl.getDept(dno);
+	}
+}
+interface EmployeeService
+{
+	List<Employee> fetchEmployees();
+	List<Employee> findAllEmployeesByDeptNumber(int dno);
+	List<Employee> findAllEmployeesByJob(String job);
+}
+class EmployeeServiceImpl implements EmployeeService
+{
+	@Autowired
+	EmployeeDAOImpl  empDaoImpl;
+
+	List<Employee> fetchEmployees()
+	{
+		return empDaoImpl.getEmps();
+	}
+	
+	List<Employee> findAllEmployeesByDeptNumber(int dno)
+	{
+		Department d = deptDaoImpl.getDept(dno);
+		List<Employee> emps = d.getEmployees(); //deptno,name,loca, employees
+		return emps;
+	}
+
+	List<Employee> findAllEmployeesByJob(String job) //SALESMAN
+	{
+
+		List<Employee> emps  = empDaoImpl.getEmpsByJob(job);
+
+		for(Employee x : emps)
+		{
+			
+		}
+		
+	}
+
+}
+==================================  angular layer ===============
+
+angular service is invoking --> findAllEmployeesByJob() @CrossOrigin
+
+user at html is clicking on find emp "job" from drop down list box
+
+
+
+
+
+
+
+
+
+
