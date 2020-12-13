@@ -1,0 +1,141 @@
+ db.books.insert([{  	
+     "bookId": 101,
+     "imageUrl": "assets/images/java8_in_action.jpeg",
+     "title": "Java 8 in Action",
+     "authors": [
+           {"firstName": "Raoul-Gabriel", "lastName": "Urma"},
+           {"firstName": "Mario", "lastName": "Fusco"},
+           {"firstName": "Alan", "lastName": "Mycroft"}
+      ],
+      "category": "programming",
+      "publisher": "Wiley",
+      "noOfPages": 424, 
+      "rating": 4.4,
+      "edition": 2,
+      "price": 618,
+      "releaseDate": new Date(2018, 05, 23)
+},
+{
+     "bookId": 102,
+     "imageUrl": "assets/images/head_first_servlet_&_jsp.jpg",
+     "title": "Head First Servlet & JSP",
+     "authors": [
+           {"firstName": "Kathy", "lastName": "Sierra"},
+           {"firstName": "Bert", "lastName": "Bates"}
+      ],
+      "category": "programming",
+      "publisher": "O Reilly",
+      "noOfPages": 928, 
+      "rating": 4.8,
+      "edition": 2,
+      "price": 1140,
+      "releaseDate": new Date(2014, 10, 28)
+},
+{
+     "bookId": 103,
+     "imageUrl": "assets/images/angular_2_cookbook.jpeg",
+     "title": "Angular 2 Cookbook",
+     "authors": [
+           {"firstName": "Matt", "lastName": "Frisbie"}
+      ],
+      "category": "programming",
+      "publisher": "Packt",
+      "noOfPages": 464, 
+      "rating": 3.0,
+      "edition": 1,
+      "price": 958,
+      "releaseDate": new Date(2017, 04, 25)
+},
+{
+     "bookId": 104,
+     "imageUrl": "assets/images/its_my_life.jpeg",
+     "title": "Its My Life",
+     "authors": [
+           {"firstName": "Baig Mirza", "lastName": "Yawar"}
+      ],
+      "category": "biographies",
+      "publisher": "Prakash Book Depot",
+      "noOfPages": 230, 
+      "rating": 3.0,
+      "edition": 1,
+      "price": 255,
+      "releaseDate": new Date(2018, 05, 12)
+},
+{
+     "bookId": 105,
+     "imageUrl": "assets/images/a_monks_memoir.jpeg",
+     "title": "A Monk's Memoir",
+     "authors": [
+           {"firstName": "Om", "lastName": "Swami"}
+      ],
+      "category": "biographies",
+      "publisher": "Harper",
+      "noOfPages": 230, 
+      "rating": 3.0,
+      "edition": 1,
+      "price": 311,
+      "releaseDate": new Date(2013, 07, 22)
+},
+{
+     "bookId": 106,
+     "imageUrl": "assets/images/alexander_the_great.jpeg",
+     "title": "Alexander : The Great",
+     "authors": [
+           {"firstName": "Abbott", "lastName": "Jacob"}
+      ],
+      "category": "biographies",
+      "publisher": "Prakash Book Depot",
+      "noOfPages": 320, 
+      "rating": 4.4,
+      "edition": 1,
+      "price": 135,
+      "releaseDate": new Date(2012, 02, 07)
+},
+{
+     "bookId": 107,
+     "imageUrl": "assets/images/rich_dad_poor_dad.jpeg",
+     "title": "Rich Dad Poor Dad",
+     "authors": [
+           {"firstName": "Robert", "lastName": "Kiyosaki"}
+      ],
+      "category": "business",
+      "publisher": "MANJUL PUBLISHING HOUSE PVT. LTD",
+      "noOfPages": 215, 
+      "rating": 4.4,
+      "edition": 1,
+      "price": 150,
+      "releaseDate": new Date(2012, 06, 17)
+},
+{
+     "bookId": 108,
+     "imageUrl": "assets/images/start_with_why.jpeg",
+     "title": "Start With Why",
+     "authors": [
+           {"firstName": "Simon", "lastName": "Sinek"}
+      ],
+      "category": "business",
+      "publisher": "Penguin",
+      "noOfPages": 215, 
+      "rating": 4.5,
+      "edition": 1,
+      "price": 264,
+      "releaseDate": new Date(2015, 11, 17)
+},
+{
+     "bookId": 109,
+     "imageUrl": "assets/images/one_up_on_wall_street.jpeg",
+     "title": "One Up On Wall Street",
+     "authors": [
+           {"firstName": "Lynch", "lastName": "Peter"}
+      ],
+      "category": "business",
+      "publisher": "Simon & Schuster",
+      "noOfPages": 304, 
+      "rating": 4.3,
+      "edition": 1,
+      "price": 343,
+      "releaseDate": new Date(2013, 12, 27)
+}
+]);
+
+db.books.ensureIndex({bookId: 1}, {unique: true})
