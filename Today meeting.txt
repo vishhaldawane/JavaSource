@@ -1,0 +1,53 @@
+
+
+			Controller
+			|	|json	
+	oracle<--> spring 	+--angular
+
+
+
+	mongodb<--> nodejs <--> angular
+	|		
+	json	
+
+
+following link is for node js
+https://github.com/vishhaldawane/JavaSource/blob/main/e-commerce-api.zip
+
+
+
+following link is for angular app
+https://github.com/vishhaldawane/JavaSource/blob/main/e-commerce-app.zip
+    
+
+for adding data in mongo console
+following file's data is copy pasted 
+https://github.com/vishhaldawane/JavaSource/blob/main/ecomm_dataset.txt
+
+
+
+1. mongo db to be starteed
+	- start cmd as administrator
+
+	- start mongodb service <--oracle service from services.msc
+
+		C:\Program Files\MongoDB\Server\4.2\bin\mongod d:\data
+		( assuming d:\data folder is created)
+
+	- start mongo db console <-- sqlplus
+
+		C:\Program Files\MongoDB\Server\4.2\bin\mongo
+	
+2. databse to create - type -> use bookapp <-- inside mongodb console <-XE ORCL OSE
+
+3. insert query from txt file -> ecomm_dataset.txt <-- copy paste <--run SQL file to create tables and rows
+	simply ctrl + c  (copy) from the above text file
+	and right click inside mongo screen prompt to paste it
+
+4. folder->ecommerce-app > npm install <-- 
+
+5. folder->ecommerce-api > node app.js <-- to run the app <-- same as spring boot start
+
+6. folder->ecommerce-app>  ng serve
+
+7. localhost:4200 <-- in browser
